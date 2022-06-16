@@ -8,9 +8,6 @@ class Database{
 
     public static $pdo = null;
 
-    public function __construct(){
-
-    }
     // Retourne une instance de PDO si c'elle si n'est pas null
     public static function getPDO(){
         
