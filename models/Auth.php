@@ -35,33 +35,48 @@ class Auth{
     }
 
     public static function getRole(){
-        // On recuperer l'user trouve
-        $user = Database::recover(Database::query("SELECT * FROM user WHERE id = ?", array($_SESSION['id'])));
 
-        if($user != false){
-            $roles = ["client", "admin"];
-            $role = $user->role;
+        if(isset($_SESSION['id'])){
+            // On recuperer l'user trouve
+            $user = Database::recover(Database::query("SELECT * FROM user WHERE id = ?", array($_SESSION['id'])));
     
-            if($role = $roles[0]){
-                header("Location: ../views/dashboards/apprenant/");
-            }
+            if($user != false){
+                $roles = ["client", "admin"];
+                $role = $user->role;
+        
+                if($role = $roles[0]){
+                    header("Location: ../views/dashboards/apprenant/");
+                }
+        
+        
+                if($role = $roles[1]){
+                    header("Location: ../views/dashboards/admin/");
+                }
     
-    
-            if($role = $roles[1]){
-                header("Location: ../views/dashboards/admin/");
-            }
-
-    
-            if(!in_array($role, $roles)){
-                $_SESSION['message'] = "Vous n'avez pas les autorisations nécessaire !";
+        
+                if(!in_array($role, $roles)){
+                    $_SESSION['message'] = "Vous n'avez pas les autorisations nécessaire !";
+                    $_SESSION['message_type'] = "danger";
+                    header("Location: ../view/dasboard/");
+                }
+            }else{
+                $_SESSION['message'] = "Une erreur c'est produite";
                 $_SESSION['message_type'] = "danger";
-                header("Location: ../connexion.php");
+                header("Location: ../view/dasboard/");
             }
+
         }else{
             $_SESSION['message'] = "Une erreur c'est produite";
             $_SESSION['message_type'] = "danger";
-            header("Location: ../connexion.php");
+            header("Location: ../index.php");
         }
     } 
+
+    public static function Disconnexion(){
+        if(session_status() == PHP_SESSION_NONE){
+            session_start();
+            session_destroy();
+        }
+    }
 
 }
