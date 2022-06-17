@@ -15,7 +15,7 @@ require_once 'controller.php';
             $prixAchat = htmlentities($_GET['prixAchat']);
             $prixVente = htmlentities($_GET['prixVente']);
 
-            $img_url = $upload->upload_image($_FILES['image'], 'product', 400, 400, './images/');
+            $img_url = $upload->upload_image($_FILES['image'], 'product', 400, 400, '../assets/img/');
 
                 if(Product::create($name, $description, $img_url, $prixAchat, $prixVente) === false){
                     $_SESSION['message'] = "Une erreur s'est produite !";
