@@ -79,4 +79,20 @@ class Auth{
         }
     }
 
+    public static function Auth(){
+        if(session_status() == PHP_SESSION_NONE){
+            session_start();
+        }
+        
+        if(isset($_SESSION['id'])){
+            // On recuperer l'user trouve
+            $user = Database::recover(Database::query("SELECT * FROM user WHERE id = ?", array($_SESSION['id'])));
+    
+            return ($user == false) ? false : $user;
+        
+        }else{
+            return false;
+        }
+    }
+
 }
