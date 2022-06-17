@@ -127,6 +127,11 @@ input {
     text-align: center;
 }
 
+
+.breadcrumb__subtitle span{
+    color: var(--first-color);
+}
+
 /*=============== LAYOUT ===============*/
 .container {
     max-width: 968px;

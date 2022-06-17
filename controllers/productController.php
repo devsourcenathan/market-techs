@@ -10,14 +10,15 @@ require_once 'controller.php';
         }
 
         if($action === "create"){
-            $name = htmlentities($_GET['name']);
-            $description = htmlentities($_GET['description']);
-            $prixAchat = htmlentities($_GET['prixAchat']);
-            $prixVente = htmlentities($_GET['prixVente']);
+            $name = htmlentities($_POST['name']);
+            $description = htmlentities($_POST['description']);
+            $fournisseur = htmlentities($_POST['fournisseur']);
+            $prixAchat = htmlentities($_POST['prixAchat']);
+            $prixVente = htmlentities($_POST['prixVente']);
 
             $img_url = $upload->upload_image($_FILES['image'], 'product', 400, 400, '../assets/img/');
 
-                if(Product::create($name, $description, $img_url, $prixAchat, $prixVente) === false){
+                if(Product::create($name, $description, $fournisseur, $img_url, $prixAchat, $prixVente) === false){
                     $_SESSION['message'] = "Une erreur s'est produite !";
                     $_SESSION['message_type'] = "danger";
                     header("Location: ../views/dasboard/products/create.php");
@@ -31,12 +32,13 @@ require_once 'controller.php';
         if($action == 'update')
         {
             $id = $_POST['id'];
-            $name = htmlentities($_GET['name']);
-            $description = htmlentities($_GET['description']);
-            $prixAchat = htmlentities($_GET['prixAchat']);
-            $prixVente = htmlentities($_GET['prixVente']);
+            $name = htmlentities($_POST['name']);
+            $description = htmlentities($_POST['description']);
+            $fournisseur = htmlentities($_POST['fournisseur']);
+            $prixAchat = htmlentities($_POST['prixAchat']);
+            $prixVente = htmlentities($_POST['prixVente']);
 
-            if(Product::update($name, $description, $prixAchat, $prixVente, $id) === false){
+            if(Product::update($name, $description, $fournisseur, $prixAchat, $prixVente, $id) === false){
                 $_SESSION['message'] = "Une erreur s'est produite !";
                 $_SESSION['message_type'] = "danger";
                 header("Location: ../views/dasboard/products/create.php");

@@ -1,17 +1,17 @@
 <?php
 
 class Product{
-    public static function create($name, $description, $img_url, $prixAchat, $prixVente){
+    public static function create($name, $description, $fournisseur, $img_url, $prixAchat, $prixVente){
         Database::query(
-            "INSERT INTO products set name = ?, description = ?, slug = ? , img_url = ? , prixAchat = ? , prixVente = ?",
-            [$name, $description, str_replace(' ', '-', $name), $img_url, $prixAchat, $prixVente]
+            "INSERT INTO products set name = ?, description = ?, fournisseur = ?, slug = ? , img_url = ? , prixAchat = ? , prixVente = ?",
+            [$name, $description, $fournisseur, str_replace(' ', '-', $name), $img_url, $prixAchat, $prixVente]
         );  
     }
 
-    public static function update($name, $description, $prixAchat, $prixVente, $id){
+    public static function update($name, $description, $fournisseur, $prixAchat, $prixVente, $id){
         Database::query(
-            "UPDATE products set name = ?, description = ?, prixAchat = ? , prixVente = ? WHERE id = ?", 
-            [$name, $description, $prixAchat, $prixVente, $id]
+            "UPDATE products set name = ?, description = ?, fournisseur = ?, prixAchat = ? , prixVente = ? WHERE id = ?", 
+            [$name, $description, $fournisseur, $prixAchat, $prixVente, $id]
         );
     }
 
