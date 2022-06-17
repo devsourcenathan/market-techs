@@ -6,3 +6,8 @@
     require_once '../models/Products_tags.php';
     require_once '../models/Tag.php';
     require_once '../models/Reduction.php';
+
+
+    require_once '../models/Upload.php';
+
+    $upload = new Upload();
